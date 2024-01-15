@@ -1,4 +1,6 @@
 ﻿
+using CleanArchTemplate.Domain.Exceptions;
+
 namespace CleanArchTemplate.Domain.UnitTests.Entities;
 
 public class StockTests
@@ -38,8 +40,19 @@ public class StockTests
         var removeStock = () =>
         {
             var stock = new Stock(1, 5);
-            stock.AddStock(-1);
+            stock.RemoveStock(-1);
         };
         removeStock.Should().Throw<ArgumentException>();
+    }
+
+    [Test]
+    public void RemoveStockWhenRemoveQuantityIsGreaterThanCurrentStockQuantityShouldThrowException()
+    {
+        var removeStock = () =>
+        {
+            var stock = new Stock(1, 5);
+            stock.RemoveStock(6);
+        };
+        removeStock.Should().Throw<InvalidStockOperationException>();
     }
 }

@@ -16,7 +16,7 @@ public class Stock : BaseAuditableEntity<int>
     public void RemoveStock(int quantity)
     {
         Guard.Against.NegativeOrZero(quantity, nameof(quantity));
-
+        Guard.Against.InvalidStockOperation(this, quantity);
         var newQuantity = Quantity - quantity;
         Quantity = newQuantity;
     }
