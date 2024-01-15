@@ -1,8 +1,4 @@
-﻿
-using CleanArchTemplate.Domain.Entities;
-using CleanArchTemplate.Domain.ValueObjects;
-
-namespace CleanArchTemplate.Domain.UnitTests.Entities;
+﻿namespace CleanArchTemplate.Domain.UnitTests.Entities;
 
 public class SupplierTests
 {

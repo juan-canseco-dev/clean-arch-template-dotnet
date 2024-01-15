@@ -1,6 +1,4 @@
-﻿using CleanArchTemplate.Domain.Entities;
-
-namespace CleanArchTemplate.Domain.UnitTests.Entities;
+﻿namespace CleanArchTemplate.Domain.UnitTests.Entities;
 
 public class UnitOfMeasurementTests
 {
