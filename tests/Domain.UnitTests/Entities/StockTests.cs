@@ -1,7 +1,4 @@
-﻿
-using CleanArchTemplate.Domain.Exceptions;
-
-namespace CleanArchTemplate.Domain.UnitTests.Entities;
+﻿namespace CleanArchTemplate.Domain.UnitTests.Entities;
 
 public class StockTests
 {

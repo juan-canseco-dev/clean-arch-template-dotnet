@@ -3,14 +3,13 @@
 public class ProductTests
 {
 
-    static int SupplierId = 1;
-    static int CategoryId = 2;
-    static int UnitId = 3;
-    static string ProductName = "New Product";
-    static decimal PurchasePrice = 9.99m;
-    static decimal GreaterPurchasePrice = 29.99m;
-    static decimal SalePrice = 19.99m;
-
+    static readonly int SupplierId = 1;
+    static readonly int CategoryId = 2;
+    static readonly int UnitId = 3;
+    static readonly string ProductName = "New Product";
+    static readonly decimal PurchasePrice = 9.99m;
+    static readonly decimal GreaterPurchasePrice = 29.99m;
+    static readonly decimal SalePrice = 19.99m;
 
     [Test]
     public void CreateProductWhenPropertiesArePresentShouldCreateSuccessfully()
@@ -32,6 +31,24 @@ public class ProductTests
         product.SalePrice.Should().Be(SalePrice);
         product.Stock.Should().NotBeNull();
     }
+
+    [Test]
+    public void CreateProductWhenPurchasePriceIsGreaterThanSalePriceShouldThrowException()
+    {
+        var createProduct = () =>
+        {
+            var product = new Product(
+                supplierId: SupplierId,
+                categoryId: CategoryId,
+                unitId: UnitId,
+                name: ProductName,
+                purchasePrice: GreaterPurchasePrice,
+                salePrice: SalePrice
+            );
+        };
+        createProduct.Should().Throw<NegativeProfitException>();
+    }
+
 
     [Test]
     public void CreateProductWhenPropertiesAreInvalidShouldThrowException([ValueSource(nameof(ProductsData))] object[] productData)
@@ -88,6 +105,39 @@ public class ProductTests
 
 
     [Test]
+    public void UpdateProductPriceWhenPurchasePriceIsGreaterThanSalePriceShouldThrowException()
+    {
+        var updatedSupplierId = 2;
+        var updatedCategoryId = 3;
+        var updatedUnitId = 4;
+        var updatedProductName = "Updated Product Name";
+        var updatedSalePrice = 15.99m;
+
+        var product = new Product(
+           supplierId: SupplierId,
+           categoryId: CategoryId,
+           unitId: UnitId,
+           name: ProductName,
+           purchasePrice: PurchasePrice,
+           salePrice: SalePrice
+       );
+
+        var updateProduct = () =>
+        {
+            product.Update(
+                supplierId: updatedSupplierId,
+                categoryId: updatedCategoryId,
+                unitId: updatedUnitId,
+                name: updatedProductName,
+                purchasePrice: GreaterPurchasePrice,
+                salePrice: updatedSalePrice
+            );
+        };
+        updateProduct.Should().Throw<NegativeProfitException>();
+    }
+
+
+    [Test]
     public void UpdateProductWhenPropertiesAreNotPresentShouldThrowException([ValueSource(nameof(ProductsData))] object[] productData)
     {
         Action updateProduct = () =>
@@ -122,14 +172,13 @@ public class ProductTests
         updateProduct.Should().Throw<ArgumentException>();
     }
 
-    static object[] ProductsData = 
+    static readonly object[] ProductsData = 
     {
         new object[] {0, CategoryId, UnitId, ProductName, PurchasePrice, SalePrice },
         new object[] { SupplierId, 0, UnitId, ProductName, PurchasePrice, SalePrice },
         new object[] { SupplierId, CategoryId, 0 , ProductName, PurchasePrice, SalePrice },
         new object[] { SupplierId, CategoryId, UnitId, "", PurchasePrice, SalePrice },
         new object[] { SupplierId, CategoryId, UnitId, ProductName, 0.0m, SalePrice },
-        new object[] { SupplierId, CategoryId, UnitId, ProductName, PurchasePrice, 0.0m },
-        new object[] { SupplierId, CategoryId, UnitId, ProductName, GreaterPurchasePrice, SalePrice}
+        new object[] { SupplierId, CategoryId, UnitId, ProductName, PurchasePrice, 0.0m }
     };
 }

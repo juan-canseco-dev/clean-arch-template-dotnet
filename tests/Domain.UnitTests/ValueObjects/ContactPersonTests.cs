@@ -1,6 +1,4 @@
-﻿using CleanArchTemplate.Domain.ValueObjects;
-
-namespace CleanArchTemplate.Domain.UnitTests.ValueObjects;
+﻿namespace CleanArchTemplate.Domain.UnitTests.ValueObjects;
 
 public class ContactPersonTests
 {
@@ -28,7 +26,7 @@ public class ContactPersonTests
         createContactPerson.Should().Throw<ArgumentException>();
     }
 
-    static object[] ContactData =
+    static readonly object[] ContactData =
     {
         new object[] {"", "555-1234-1" },
         new object[] {"John Doe", ""}

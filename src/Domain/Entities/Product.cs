@@ -21,7 +21,7 @@ public class Product : BaseAuditableEntity<int>
         Guard.Against.NullOrEmpty(name, nameof(name));
         Guard.Against.NegativeOrZero(purchasePrice, nameof(purchasePrice));
         Guard.Against.NegativeOrZero(salePrice, nameof(salePrice));
-        Guard.Against.SalePriceGreaterThanPurchasePrice(salePrice: salePrice, purchasePrice: purchasePrice);
+        Guard.Against.NegativeProfit(salePrice: salePrice, purchasePrice: purchasePrice);
 
         SupplierId = supplierId;
         CategoryId = categoryId;
@@ -56,7 +56,7 @@ public class Product : BaseAuditableEntity<int>
         Guard.Against.NullOrEmpty(name, nameof(name));
         Guard.Against.NegativeOrZero(purchasePrice, nameof(purchasePrice));
         Guard.Against.NegativeOrZero(salePrice, nameof(salePrice));
-        Guard.Against.SalePriceGreaterThanPurchasePrice(salePrice: salePrice, purchasePrice: purchasePrice);
+        Guard.Against.NegativeProfit(salePrice: salePrice, purchasePrice: purchasePrice);
 
         SupplierId = supplierId;
         CategoryId = categoryId;

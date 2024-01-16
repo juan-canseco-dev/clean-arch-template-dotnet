@@ -47,7 +47,7 @@ public class CategoryTests
     }
 
 
-    static object[] CategoryData = new object[]
+    static readonly object[] CategoryData = new object[]
     {
         new object[] {0, "Electronics"},
         new object[] {1, ""}

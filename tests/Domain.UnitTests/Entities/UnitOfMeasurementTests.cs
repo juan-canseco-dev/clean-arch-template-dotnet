@@ -47,7 +47,7 @@ public class UnitOfMeasurementTests
     }
 
 
-    static object[] UnitData = new object[]
+    static readonly object[] UnitData = new object[]
     {
         new object[] {0, "Kilogram"},
         new object[] {1, ""}

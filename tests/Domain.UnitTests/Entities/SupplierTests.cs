@@ -2,11 +2,11 @@
 
 public class SupplierTests
 {
-    static int SupplierId = 1;
-    static string SupplierName = "ABC Corp";
-    static string SupplierPhone = "555-1234-3";
-    static ContactPerson ContactPerson = new ContactPerson(fullname: "John Doe", phone: "555-1234-2");
-    static Address Address = new Address(country: "Mexico", state: "Sonora", city: "Hermosillo", zipCode: "83200", street: "Center");
+    static readonly int SupplierId = 1;
+    static readonly string SupplierName = "ABC Corp";
+    static readonly string SupplierPhone = "555-1234-3";
+    static readonly ContactPerson ContactPerson = new (fullname: "John Doe", phone: "555-1234-2");
+    static readonly Address Address = new (country: "Mexico", state: "Sonora", city: "Hermosillo", zipCode: "83200", street: "Center");
 
     [Test]
     public void CreateSupplierWhenAllPropertiesArePresentShouldCreateSuccessfully()
@@ -113,7 +113,7 @@ public class SupplierTests
     }
 
 
-    static object[] CreateSuppliersData =
+    static readonly object[] CreateSuppliersData =
     {
         new object[] {0, SupplierName, SupplierPhone, Address, ContactPerson},
         new object[] {SupplierId, "", SupplierPhone, Address, ContactPerson},
@@ -122,7 +122,7 @@ public class SupplierTests
         new object[] {SupplierId, SupplierName, SupplierPhone, Address, null},
     };
 
-    static object[] UpdateSuppliersData =
+    static readonly object[] UpdateSuppliersData =
     {
         new object[] {SupplierId, "", SupplierPhone, Address, ContactPerson},
         new object[] {SupplierId, SupplierName, "", Address, ContactPerson},

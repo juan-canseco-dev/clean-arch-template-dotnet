@@ -1,7 +1,4 @@
-﻿
-using CleanArchTemplate.Domain.ValueObjects;
-
-namespace CleanArchTemplate.Domain.UnitTests.ValueObjects;
+﻿namespace CleanArchTemplate.Domain.UnitTests.ValueObjects;
 
 public class AddressTests
 {
@@ -42,7 +39,7 @@ public class AddressTests
     }
 
 
-    static object[] AddressData =
+    static readonly object[] AddressData =
     {
         new object[] {"" , "Sonora", "Hermosillo", "83200", "Center"},
         new object[] {"Mexico" , "", "Hermosillo", "83200", "Center"},
