@@ -68,6 +68,5 @@ public class Product : BaseAuditableEntity<int>
         Supplier = default!;
         Category = default!;
         UnitOfMeasurement = default!;
-        Stock = new Stock();
     }
 }
