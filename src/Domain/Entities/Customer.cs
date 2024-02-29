@@ -9,6 +9,8 @@ public class Customer : BaseAuditableEntity<int>
 
     public void Update(ContactPerson contactPerson, Address address)
     {
+        Guard.Against.Null(contactPerson, nameof(contactPerson));
+        Guard.Against.Null(address, nameof(address));
         ContactPerson = contactPerson;
         Address = address;
     }
@@ -22,6 +24,10 @@ public class Customer : BaseAuditableEntity<int>
 
     public Customer(string identificationCode, ContactPerson contactPerson, Address address)
     {
+        Guard.Against.NullOrEmpty(identificationCode, nameof(identificationCode));
+        Guard.Against.Null(contactPerson, nameof(contactPerson));
+        Guard.Against.Null(address, nameof(address));
+
         IdentificationCode = identificationCode;
         ContactPerson = contactPerson;
         Address = address;
