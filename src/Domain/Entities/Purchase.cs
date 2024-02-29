@@ -10,7 +10,6 @@ public class Purchase : BaseAuditableEntity<int>
     public decimal Total { get; private set; }
     public virtual Supplier Supplier { get; private init; }
     public virtual IReadOnlyCollection<PurchaseItem> Items => _items.AsReadOnly();
-
     public bool Arrived { get; private set; }
 
     public void Update(List<PurchaseItem> items)

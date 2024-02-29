@@ -9,7 +9,8 @@ public class Order : BaseAuditableEntity<int>
     public int CustomerId { get; private set; }
     public decimal Total { get; private set; }
     public bool Delivered { get; private set; }
-    public IReadOnlyCollection<OrderItem> Items => _items.AsReadOnly();
+    public virtual Customer Customer { get; private set; }
+    public virtual IReadOnlyCollection<OrderItem> Items => _items.AsReadOnly();
 
     public void Update(List<OrderItem> items)
     {
@@ -33,6 +34,7 @@ public class Order : BaseAuditableEntity<int>
 
     private Order()
     {
+        Customer = default!;
         CustomerId = 0;
         Total = 0;
         _items = new List<OrderItem>();
@@ -41,6 +43,7 @@ public class Order : BaseAuditableEntity<int>
 
     public Order(int customerId, List<OrderItem> items)
     {
+        Customer = default!;
         Guard.Against.NegativeOrZero(customerId);
         Guard.Against.NullOrEmpty(items, nameof(items));
         Delivered = false;
